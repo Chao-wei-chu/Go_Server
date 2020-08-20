@@ -2,7 +2,7 @@ trigger:
  - master
 
 pool:
-   vmImage: 'ubuntu-latest'
+   vmImage: 'vs2017-win2016'
 
 steps: 
 - task: GoTool@0
@@ -11,11 +11,12 @@ steps:
 - task: Go@0
   inputs:
     command: 'get'
-    arguments: '-d'
+    arguments: '-v -d'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 - task: Go@0
   inputs:
     command: 'build'
+    arguments: '-o GO_Server.exe'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 - task: CopyFiles@2
   inputs:
